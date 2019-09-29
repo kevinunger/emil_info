@@ -67,8 +67,7 @@ public class Spielfeld
         }
       
         return poi;
-        //EMil 12312312312122
-        //1231231
+
         }
         public void poiSortieren (Punkt[] poi)
         {
