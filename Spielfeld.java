@@ -66,7 +66,9 @@ public class Spielfeld
             poi[i] = new Punkt(x,y);
         }
       
-        return poi; 
+        return poi;
+        //EMil 1231231231212
+        //1231231
         }
         public void poiSortieren (Punkt[] poi)
         {
