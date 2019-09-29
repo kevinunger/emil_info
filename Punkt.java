@@ -1,3 +1,4 @@
+
 /**
  * Beschreiben Sie hier die Klasse Punkt.
  * 
