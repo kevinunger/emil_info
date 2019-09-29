@@ -70,6 +70,7 @@ public class Spielfeld
         }
         public void poiSortieren (Punkt[] poi)
         {
+            
             double Abstand0[] = new double[n-1];
             for (j = 0; j < n-1; j++)   
             {
