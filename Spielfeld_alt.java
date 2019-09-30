@@ -30,6 +30,7 @@ public class Spielfeld
     public double a;
     public double p;
    //möglichst wenig public also global definieren
+   //jaja hab ich verstanden ;)
    
     public Spielfeld()
     {
