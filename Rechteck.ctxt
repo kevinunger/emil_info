@@ -1,0 +1,32 @@
+#BlueJ class context
+comment0.target=Rechteck
+comment1.params=
+comment1.target=Rechteck()
+comment10.params=bezeichnung
+comment10.target=void\ setBezeichnung(java.lang.String)
+comment11.params=r\ g\ b
+comment11.target=void\ setColor(int,\ int,\ int)
+comment12.params=dx\ dy
+comment12.target=void\ bewegeUm(int,\ int)
+comment13.params=verschiebevektor
+comment13.target=void\ bewegeUm(Punkt)
+comment13.text=public\ void\ bewegenUm\ (int\ vx,\ int\ vy)\n\ \ \ \ {\n\ \ \ \ \ \ \ \ position.x\ \=\ position.x\ +\ vx;\n\ \ \ \ \ \ \ \ position.y\ \=\ position.y\ +\ vy;\n\ \ \ \ \ \ \ \ \n}
+comment14.params=
+comment14.target=void\ ausgabeAttribute()
+comment2.params=position\ breite\ laenge\ bezeichnung
+comment2.target=Rechteck(Punkt,\ int,\ int,\ java.lang.String)
+comment3.params=
+comment3.target=int\ getBreite()
+comment4.params=
+comment4.target=int\ getLaenge()
+comment5.params=
+comment5.target=java.lang.String\ bezeichnung()
+comment6.params=
+comment6.target=Punkt\ position()
+comment7.params=breite
+comment7.target=void\ setBreite(int)
+comment8.params=laenge
+comment8.target=void\ setLaenge(int)
+comment9.params=position
+comment9.target=void\ setPosition(Punkt)
+numComments=15
