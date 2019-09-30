@@ -19,28 +19,7 @@ public class Spielfeld
 {
     int width = 1000;
     int length = 1000; 
-    public int x;
-    public int y;
-    public int n;
-    public int d;
-    public int w;
-    public int v;
-    public int k;
-    public int l;
-    public int m;
-    public int xp;
-    public int yp;
-    public int o;
-    public int c;
-    public int h;
-    public int q;
-    public int breite;
-    public int laenge;
-    public int yy;
-    public int xy;
-    public int yx;
-    public double a;
-    public double p;
+ 
     
     private static Random zufallsgenerator = new Random();    //Random muss ausserhalb von zufallszahl erstellt werden sonst nicht sehr zufällige werte
    
@@ -54,7 +33,7 @@ public class Spielfeld
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Anzahl der Punkte:");
-        n = scanner.nextInt(); //Anzahl Punkte eintragen
+        int n = scanner.nextInt(); //Anzahl Punkte eintragen
         Punkt[] poi = new Punkt[n+1]; //Arraylänge def. , poi = point of interest
         poi[0] = new Punkt(0,0);
         poi[0].angefahren = true; //
@@ -62,7 +41,7 @@ public class Spielfeld
         for (int i = 1; i <= n; i++)
         {
             System.out.println(i + ". Punkt x-Wert:") ;
-            x = scanner.nextInt();
+            int x = scanner.nextInt();
             if (x>1000) 
             { 
                 JOptionPane.showMessageDialog(null, "Wert liegt nicht im Spielfeld!", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
@@ -71,7 +50,7 @@ public class Spielfeld
             }
             
             System.out.println(i + ". Punkt y-Wert:") ;
-            y = scanner.nextInt();
+            int y = scanner.nextInt();
             if (y>1000) 
             { 
                 JOptionPane.showMessageDialog(null, "Wert liegt nicht im Spielfeld!", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
@@ -124,18 +103,53 @@ public class Spielfeld
        {
            Scanner scanner = new Scanner(System.in);
            System.out.println("Anzahl der Hindernisse: ");
-           n = scanner.nextInt(); //Anzahl Hindernisse eintragen
+           int n = scanner.nextInt(); //Anzahl Hindernisse eintragen
            ArrayList<Rechteck> Hindernisse = new ArrayList<Rechteck>();
+           int failCounter = 0;
+           //System.out.println(zufallszahl(0,10));
            
-           System.out.println(zufallszahl(0,10));
-           
-           //for (int i; i > n; i++){
-           
-              // Rechteck Hindernis = new Rechteck();
-              // Hindernis.position.x = ;
-
+           for (int i = 1; i < n; i++){
                
-            
+              Punkt rP = new Punkt(zufallszahl(0,1000), zufallszahl(0,1000));
+              Rechteck Hindernis = new Rechteck( 
+              rP, 
+              zufallszahl(1,100), 
+              zufallszahl(1,100), 
+              ("Rechteck" + Integer.toString(i)),
+              zufallsfarbe()
+              );
+              System.out.println("Es wurde erzeugt: ");
+              Hindernis.ausgabeAttribute();
+              System.out.println("-------------------------");
+              System.out.println(" ");
+              
+              //pruefen, ob Hindernis mit anderem Hindernis ueberlappt
+              boolean keineUeberlappung = true;
+              for (int j = 0; j < Hindernisse.size(); j++){
+                  
+                  if(Hindernis.ueberlappt(Hindernisse.get(j))){
+                     keineUeberlappung = false;
+                    }
+                    
+                }
+              
+              if (keineUeberlappung == true){ 
+                  Hindernisse.add(Hindernis);
+                  System.out.println("Keine ueberlappung");
+                  System.out.println(" ");
+                  failCounter = 0;
+                }
+              else
+              { 
+                  System.out.println("Hindernis wurde nicht hinzugefügt, da es mit einem anderen ueberlapt!");
+                  failCounter++;
+                  if (failCounter == 50){
+                      System.out.println("Es wurde 50 mail hintereinander kein Platz gefunden --> Abbruch! " );
+                      return;
+
+                  }
+              }
+            }
 
           /* int hindernis[][] = new int [h][5];
            Random l = new Random();
@@ -194,7 +208,6 @@ public class Spielfeld
             
                 
             int randZahl = zufallsgenerator.nextInt((bis - von) + 1) + von;
-            System.out.println(randZahl);
             return randZahl;
             
             
@@ -232,6 +245,14 @@ public class Spielfeld
         
         private Color zufallsfarbe()
         {
+            int randR = zufallsgenerator.nextInt(255) + 1; //plus eins, da nextInt hoechste Zahl nicht beinhaltet
+            int randG = zufallsgenerator.nextInt(255) + 1;
+            int randB = zufallsgenerator.nextInt(255) + 1;
+            Color zufallsfarbe = new Color(randR, randG, randB);
+            
+            return zufallsfarbe;
+                
+                /*         
             Color zufallsfarbe;
             Random red = new Random();
             Random green = new Random();
@@ -243,6 +264,7 @@ public class Spielfeld
             
             zufallsfarbe = new Color(r,g,b);
             return zufallsfarbe;
+            */
         }
 }
             
