@@ -13,7 +13,7 @@ public class Rechteck
     public String bezeichnung;
     //public float r,g,b;
     private Color farbe;
-    Punkt position = new Punkt(30,20);
+    Punkt position = new Punkt();
     public int v1;
     public int v2;
     
@@ -22,10 +22,14 @@ public class Rechteck
     
     
     }
-    public Rechteck(Punkt position, int breite, int laenge,
+    public Rechteck(Punkt position, int width, int height,
     String bezeichnung)
     {
     
+        this.position = position;
+        this.width = width;
+        this.height = height;
+        this.bezeichnung = bezeichnung;
     }
     public int getWidth()
     {
@@ -49,8 +53,12 @@ public class Rechteck
     
     public boolean ueberlappt (Rechteck r){
         
-        return (position.x < r.position.x + r.width && position.x + width > r.position.x &&
-        position.y < r.position.y + r.height && position.y + height > r.position.y);
+        System.out.println(r.position.x);
+        System.out.println(position.x);
+        System.out.println(this.position.x);
+        
+        return this.position.x < r.position.x + r.width && this.position.x + this.width > r.position.x &&
+        this.position.y < r.position.y + r.height && this.position.y + this.height > r.position.y;
         
     }
     public void setWidth (int width)
