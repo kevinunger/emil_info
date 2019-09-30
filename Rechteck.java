@@ -8,8 +8,8 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 public class Rechteck
 {
-    public int breite;
-    public int laenge;
+    public int width;
+    public int height;
     public String bezeichnung;
     //public float r,g,b;
     private Color farbe;
@@ -27,14 +27,14 @@ public class Rechteck
     {
     
     }
-    public int getBreite()
+    public int getWidth()
     {
        
-        return this.breite;
+        return this.width;
     }
-    public int getLaenge()
+    public int getHeight()
     {
-        return this.laenge; 
+        return this.height; 
     }
     public String bezeichnung()
     {
@@ -49,20 +49,19 @@ public class Rechteck
     
     public boolean ueberlappt (Rechteck r){
         
+        return (position.x < r.position.x + r.width && position.x + width > r.position.x &&
+        position.y < r.position.y + r.height && position.y + height > r.position.y);
         
-    
-    
-        return true;
     }
-    public void setBreite (int breite)
+    public void setWidth (int width)
     {
     
-        this.breite = breite;
+        this.width = width;
               
     }
-    public void setLaenge (int laenge)
+    public void setHeight (int height)
     {
-        this.laenge = laenge;
+        this.height = height;
     
     }    
     public void setPosition (Punkt position)
@@ -102,8 +101,8 @@ public class Rechteck
     public void ausgabeAttribute()
    
     {
-        System.out.println("Breite: " + breite);
-        System.out.println("Länge: " + laenge);
+        System.out.println("Breite: " + width);
+        System.out.println("Länge: " + height);
         System.out.println("Position: " + position.x + " ; "+position.y);
         System.out.println("Bezeichnung: " + bezeichnung);
         //System.out.println("Farbe: " + r + " ; " +  g + " ; " + b );
