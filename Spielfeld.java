@@ -41,6 +41,8 @@ public class Spielfeld
     public int yx;
     public double a;
     public double p;
+    
+    private static Random zufallsgenerator = new Random();    //Random muss ausserhalb von zufallszahl erstellt werden sonst nicht sehr zufällige werte
    
    
     public Spielfeld()
@@ -80,8 +82,7 @@ public class Spielfeld
         }
       
         return poi;
-        
-        return poi;        
+     
         }
         public void poiSortieren (Punkt[] poi)
         {
@@ -122,8 +123,20 @@ public class Spielfeld
        public void hindernislisteErzeugen()
        {
            Scanner scanner = new Scanner(System.in);
-           System.out.println("Anzahl der Hindernisse:");
-           h = scanner.nextInt(); //Anzahl Hindernisse eintragen
+           System.out.println("Anzahl der Hindernisse: ");
+           n = scanner.nextInt(); //Anzahl Hindernisse eintragen
+           ArrayList<Rechteck> Hindernisse = new ArrayList<Rechteck>();
+           
+           System.out.println(zufallszahl(0,10));
+           
+           //for (int i; i > n; i++){
+           
+              // Rechteck Hindernis = new Rechteck();
+              // Hindernis.position.x = ;
+
+               
+            
+
           /* int hindernis[][] = new int [h][5];
            Random l = new Random();
            Random br = new Random();
@@ -174,8 +187,20 @@ public class Spielfeld
             */
            
         }
-        private int zufallszahlen(int laenge, int breite)
+        
+        
+        private int zufallszahl(int von, int bis)
         {
+            
+                
+            int randZahl = zufallsgenerator.nextInt((bis - von) + 1) + von;
+            System.out.println(randZahl);
+            return randZahl;
+            
+            
+            
+            
+            /*
             Random l  = new Random();
             Random br = new Random();
             Random xx = new Random();
@@ -202,6 +227,7 @@ public class Spielfeld
         
             }
          return breite;
+         */
         }
         
         private Color zufallsfarbe()
@@ -220,7 +246,3 @@ public class Spielfeld
         }
 }
             
-            
-       }
-    
-    }
