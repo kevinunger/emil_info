@@ -1,4 +1,5 @@
 
+
 /**
  * Beschreiben Sie hier die Klasse Spielfeld.
  * 
@@ -11,6 +12,9 @@ import java.util.Arrays;
 import java.util.Random;
 import java.awt.Color;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Spielfeld
 {
     int width = 1000;
@@ -18,8 +22,6 @@ public class Spielfeld
     public int x;
     public int y;
     public int n;
-    public int i;
-    public int j;
     public int d;
     public int w;
     public int v;
@@ -51,9 +53,11 @@ public class Spielfeld
         Scanner scanner = new Scanner(System.in);
         System.out.println("Anzahl der Punkte:");
         n = scanner.nextInt(); //Anzahl Punkte eintragen
-        Punkt[] poi = new Punkt[n]; //Arraylänge def. , poi = point of interest
+        Punkt[] poi = new Punkt[n+1]; //Arraylänge def. , poi = point of interest
+        poi[0] = new Punkt(0,0);
+        poi[0].angefahren = true; //
         
-        for ( i = 0; i < n; i++)
+        for (int i = 1; i <= n; i++)
         {
             System.out.println(i + ". Punkt x-Wert:") ;
             x = scanner.nextInt();
@@ -77,94 +81,44 @@ public class Spielfeld
       
         return poi;
         
+        return poi;        
         }
-    /*    public void poiSortieren (Punkt[] poi)
+        public void poiSortieren (Punkt[] poi)
         {
-            
-            double Abstand0[] = new double[n-1];
-            for (j = 0; j < n-1; j++)   
-            {
-                int x0 = poi[0].x;
-                int y0 = poi[0].y;
-                int e = j + 1;
-                int xi = poi[e].x;
-                int yi = poi[e].y;
-            
-                Abstand0[j] = Math.sqrt(Math.pow(xi-x0, 2) + Math.pow(yi-x0, 2));
-                
-            }
-            Arrays.sort(Abstand0);
-            a = Abstand0[0];
-            System.out.println("kürzester Abstand:" + a);
-            //Abstand aller Punkte zum Roboter berechnen und aufsteigend sortieren 
-            double Verleich0[] = new double[n-1];
-            for (k = 0; k < n-1; k++)   
-            {
-                int x0 = poi[0].x;
-                int y0 = poi[0].y;
-                int e = k + 1;
-                int xi = poi[e].x;
-                int yi = poi[e].y;
-            
-                double b = Math.sqrt(Math.pow(xi-x0, 2) + Math.pow(yi-x0, 2));
-                
-                if(a == b)
+            Punkt roboter = new Punkt(0,0); //Punkt, der Roboter darstellt
+            int n = poi.length;  //6
+            //double Abstaende[] = new double[n-1];//array abstand mit länge von poi erstellen
+            //List Abstaende = new ArrayList();
+            ArrayList<Double> Abstaende = new ArrayList<Double>();
+            for (int j = 1; j < n; j++){
+                Abstaende.clear();     //abstandsarray leeren
+                System.out.println("Runde " + j); 
+                for (int i = 1; i < n; i++)                                     //Abstaende ermitteln
                 {
-                     d = k;
-                }
-            }
-            //vergleichen der berechneten Werten mit Vergleichsmethode, um herauszufinden, welcher Punkt der nächste ist
-            
-            System.out.println(d+1 + ". Punkt");  
-            
-            //Schleife?
-            
-            for (v = 0; v < n-2;v++)
-            {   
-                
-                double Abstand[] = new double[n-1];
-                for (l = 0; l < n-1; l++)   
-                {
-                    c = l + 1;
-                    if (l == d)
-                    {
-                        xp = 100000;
-                        yp = 100000;
-                    }
-                    else 
-                    {
-                        xp = poi[c].x;
-                        yp = poi[c].y;
-                    }
-                    int x0 = poi[d].x;
-                    int y0 = poi[d].y;
-                
-                    Abstand[l] = Math.sqrt(Math.pow(xp-x0, 2) + Math.pow(yp-y0, 2));
-                }                
-                Arrays.sort(Abstand);
-                p = Abstand[0];
-                System.out.println("kürzester Abstand:" + p);
-            
-                double Verleich[] = new double[n-1];
-                for (o = 0; o < n-1; o++)   
-                {
-                    int x0 = poi[d].x;
-                    int y0 = poi[d].y;
-                    int f = o + 1;
-                    int xi = poi[f].x;
-                    int yi = poi[f].y;
-            
-                    double b = Math.sqrt(Math.pow(xi-x0, 2) + Math.pow(yi-x0, 2));
-                
-                    if(p == b)
-                    {
-                        w = o;
+                    poi[i].abstand = roboter.gibAbstand(poi[i].x, poi[i].y);
+                    //System.out.println("Abstand von " + poi[i].x + ", " + poi[i].y + " ist: " + poi[i].abstand);
+                    if (poi[i].angefahren == false){
+                        Abstaende.add(poi[i].abstand);
+                        //System.out.println("Hinzugefuegt: " + poi[i].x + ", " + poi[i].y);
                     }
                 }
-                System.out.println(w+1 + ". Punkt");  
-                d=w;
+
+                Collections.sort(Abstaende);
+                                  //AbstandsListe sortieren
+                System.out.println(Abstaende.get(0));
+                for (int i = 1; i < n; i++){                //PunkteArray durchiterieren und zu Punkt mit geringstem Abstand fahren
+                
+                    if (poi[i].abstand == Abstaende.get(0)){      //zu punkt mit geringstem Abstand fahren
+                        roboter.x = poi[i].x;
+                        roboter.y = poi[i].y;
+                        poi[i].angefahren = true;
+                        System.out.println("Roboter ist zu " + roboter.x + ", " + roboter.y + " gefahren");
+                        System.out.println("Abstand war: " + poi[i].abstand);
+                    }
+                } 
+            
             }
-       }*/
+       }
        public void hindernislisteErzeugen()
        {
            Scanner scanner = new Scanner(System.in);
@@ -265,3 +219,8 @@ public class Spielfeld
             return zufallsfarbe;
         }
 }
+            
+            
+       }
+    
+    }

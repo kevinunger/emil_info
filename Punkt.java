@@ -11,6 +11,8 @@ public class Punkt
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     public int x;
     public int y;
+    public boolean angefahren = false;
+    public double abstand;
     /**
      * Konstruktor für Objekte der Klasse Punkt
      */
@@ -69,10 +71,13 @@ public class Punkt
     {
         int x1 = getX();
         int y1 = getY();
+        double abstand = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
         
-        return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+        return abstand;
     
     }
+    
+
   
         
         
