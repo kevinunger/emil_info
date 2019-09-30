@@ -8,7 +8,9 @@
 import java.util.Scanner ;
 import javax.swing.JOptionPane;
 import java.util.Arrays;
-//Test567
+import java.util.Random;
+import java.awt.Color;
+
 public class Spielfeld
 {
     int width = 1000;
@@ -28,6 +30,13 @@ public class Spielfeld
     public int yp;
     public int o;
     public int c;
+    public int h;
+    public int q;
+    public int breite;
+    public int laenge;
+    public int yy;
+    public int xy;
+    public int yx;
     public double a;
     public double p;
    
@@ -67,12 +76,9 @@ public class Spielfeld
         }
       
         return poi;
-
-
-        //EMil 1231231231212
         
         }
-        public void poiSortieren (Punkt[] poi)
+    /*    public void poiSortieren (Punkt[] poi)
         {
             
             double Abstand0[] = new double[n-1];
@@ -158,7 +164,104 @@ public class Spielfeld
                 System.out.println(w+1 + ". Punkt");  
                 d=w;
             }
-       }
-    
- 
+       }*/
+       public void hindernislisteErzeugen()
+       {
+           Scanner scanner = new Scanner(System.in);
+           System.out.println("Anzahl der Hindernisse:");
+           h = scanner.nextInt(); //Anzahl Hindernisse eintragen
+          /* int hindernis[][] = new int [h][5];
+           Random l = new Random();
+           Random br = new Random();
+           Random xx = new Random();
+           Random yy = new Random();
+           Random red = new Random();
+           Random green = new Random();
+           Random blue = new Random();
+           //System.out.println("test1");
+           for (q = 0; q < h-1; q++)
+           {
+              hindernis [q][0] = xx.nextInt(999) + 1;
+              Color color;
+              xy = hindernis [q][0];
+              hindernis [q][1] = yy.nextInt(999) + 1;
+              yx = hindernis[q][1];
+              if (xy > 900)
+              {
+                  hindernis[q][2] = l.nextInt(999-xy) +1;
+              } 
+              else if (yx > 900)
+              {
+                  hindernis [q][3] = br.nextInt(999-yx) +1;
+              }
+              else
+              {
+                   hindernis [q][2] = l.nextInt(99) + 1;
+                   hindernis [q][3] = br.nextInt(99) + 1;
+              }
+              int r = red.nextInt(255);
+              int g = green.nextInt(255);
+              int b = blue.nextInt(255);
+             // hindernis[q][4] = new Color(r,g,b);
+              
+              //System.out.println("S1");
+            }
+           //System.out.println("test2");
+           for (j = 0; j < h-1; j++) 
+           {
+               System.out.println("länge hindernis " + j+1 + ": " + hindernis[j][0]);
+               System.out.println("breite hindernis " + j+1 + ": " + hindernis[j][1]);
+               System.out.println("x wert hindernis " + j+1 + ": " + hindernis[j][2]);
+               System.out.println("y wert hindernis " + j+1 + ": " + hindernis[j][3]);
+               System.out.println("color")
+               System.out.println("S2");
+            }
+            System.out.println("test3");
+            */
+           
+        }
+        private int zufallszahlen(int laenge, int breite)
+        {
+            Random l  = new Random();
+            Random br = new Random();
+            Random xx = new Random();
+            Random yy = new Random();
+            for (q = 0; q < h-1; q++)
+            {
+              x = xx.nextInt(1000);
+             
+              y = yy.nextInt(1000);
+             
+              if (x > 900) 
+              {
+                 laenge = l.nextInt(1000-xy);
+              } 
+              else if (y > 900)
+              {
+                  breite = br.nextInt(1000-yx);
+              }
+              else
+              {
+                   laenge = l.nextInt(100);
+                   breite = br.nextInt(100);
+              }
+        
+            }
+         return breite;
+        }
+        
+        private Color zufallsfarbe()
+        {
+            Color zufallsfarbe;
+            Random red = new Random();
+            Random green = new Random();
+            Random blue = new Random(); 
+            int r = red.nextInt(255);
+            int g = green.nextInt(255);
+            int b = blue.nextInt(255);
+            
+            
+            zufallsfarbe = new Color(r,g,b);
+            return zufallsfarbe;
+        }
 }

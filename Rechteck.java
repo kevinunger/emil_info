@@ -73,7 +73,7 @@ public class Rechteck
     {
        
        if (r>255 || g>255 || b>255)
-       { JOptionPane.showMessageDialog(null, "Wert liegt nicht im Definitionsbereich!", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
+       { JOptionPane.showMessageDialog(null, "Wert liegt nicht im Definitionsbereich! Maximal 255", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
            
         }
        else 
@@ -88,12 +88,6 @@ public class Rechteck
         position.y = position.y + dy;
     
     }
-    /*public void bewegenUm (int vx, int vy)
-    {
-        position.x = position.x + vx;
-        position.y = position.y + vy;
-        
-    }*/
     public void bewegeUm(Punkt verschiebevektor)
     {
         position.x = verschiebevektor.x + position.x;
@@ -109,7 +103,12 @@ public class Rechteck
         //System.out.println("Farbe: " + r + " ; " +  g + " ; " + b );
         System.out.println(farbe); 
     }
-   
+    /*public boolean ueberlappt (Rechteck r)
+    {
+        
+    
+    }
+   */
    
    
     
