@@ -11,7 +11,8 @@ public class Punkt
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     public int x;
     public int y;
-    public byte angefahren = 0; 
+    public boolean angefahren = false;
+    public double abstand;
     /**
      * Konstruktor für Objekte der Klasse Punkt
      */
@@ -75,6 +76,8 @@ public class Punkt
         return abstand;
     
     }
+    
+
   
         
         

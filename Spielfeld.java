@@ -1,4 +1,5 @@
 
+
 /**
  * Beschreiben Sie hier die Klasse Spielfeld.
  * 
@@ -8,6 +9,9 @@
 import java.util.Scanner ;
 import javax.swing.JOptionPane;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Spielfeld
 {
     int width = 1000;
@@ -41,6 +45,7 @@ public class Spielfeld
         n = scanner.nextInt(); //Anzahl Punkte eintragen
         Punkt[] poi = new Punkt[n+1]; //Arraylänge def. , poi = point of interest
         poi[0] = new Punkt(0,0);
+        poi[0].angefahren = true; //
         
         for (int i = 1; i <= n; i++)
         {
@@ -64,28 +69,45 @@ public class Spielfeld
             poi[i] = new Punkt(x,y);
         }
       
-        return poi;
-
-
-        //EMil 1231231231212
-        
+        return poi;        
         }
         public void poiSortieren (Punkt[] poi)
         {
             Punkt roboter = new Punkt(0,0); //Punkt, der Roboter darstellt
-            int n = poi.length;  //4
-            double Abstand[] = new double[n-1];//array abstand mit länge von poi erstellen
-            for (int i = 1; i < n; i++)   
-            {
-                System.out.println(poi[i]);
-                Abstand[i-1] = roboter.gibAbstand(poi[i].x, poi[i].y);
+            int n = poi.length;  //6
+            //double Abstaende[] = new double[n-1];//array abstand mit länge von poi erstellen
+            //List Abstaende = new ArrayList();
+            ArrayList<Double> Abstaende = new ArrayList<Double>();
+            for (int j = 1; j < n; j++){
+                Abstaende.clear();     //abstandsarray leeren
+                System.out.println("Runde " + j); 
+                for (int i = 1; i < n; i++)                                     //Abstaende ermitteln
+                {
+                    poi[i].abstand = roboter.gibAbstand(poi[i].x, poi[i].y);
+                    //System.out.println("Abstand von " + poi[i].x + ", " + poi[i].y + " ist: " + poi[i].abstand);
+                    if (poi[i].angefahren == false){
+                        Abstaende.add(poi[i].abstand);
+                        //System.out.println("Hinzugefuegt: " + poi[i].x + ", " + poi[i].y);
+                    }
+                }
 
+                Collections.sort(Abstaende);
+                                  //AbstandsListe sortieren
+                System.out.println(Abstaende.get(0));
+                for (int i = 1; i < n; i++){                //PunkteArray durchiterieren und zu Punkt mit geringstem Abstand fahren
+                
+                    if (poi[i].abstand == Abstaende.get(0)){      //zu punkt mit geringstem Abstand fahren
+                        roboter.x = poi[i].x;
+                        roboter.y = poi[i].y;
+                        poi[i].angefahren = true;
+                        System.out.println("Roboter ist zu " + roboter.x + ", " + roboter.y + " gefahren");
+                        System.out.println("Abstand war: " + poi[i].abstand);
+                    }
+                } 
+            
             }
-            Arrays.sort(Abstand);
-            System.out.println("kürzester Abstand:" + Abstand[0] + "  " +Abstand[1]);
-            //roboter.x = 
+            
             
        }
     
- 
-}
+    }

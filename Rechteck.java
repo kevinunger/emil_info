@@ -47,7 +47,13 @@ public class Rechteck
         
     }
     
+    public boolean ueberlappt (Rechteck r){
+        
+        
     
+    
+        return true;
+    }
     public void setBreite (int breite)
     {
     
