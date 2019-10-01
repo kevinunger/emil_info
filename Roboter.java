@@ -23,7 +23,7 @@ public class Roboter
     }
 
 
-    public void spacherkennung()
+    public void spracherkennung()
     {
     Scanner scanner = new Scanner(System.in);
     boolean stopWordFound = false;
@@ -47,10 +47,10 @@ public class Roboter
                             System.out.println("Mein Geschlecht ist undefiniert beep boop");
                             break;
                          case Hersteller:
-                            System.out.println("Mein Hersteller ist Emil");
+                            System.out.println("Mein Schöpfer ist Emil beeep");
                             break;
                          case Geburtsdatum:
-                            System.out.println("Mein Geburtsdatum ist 20.4.1920");
+                            System.out.println("Mein Geburtsdatum ist der 20.4.1920");
                             break;
                     }
                     }

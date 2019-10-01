@@ -19,14 +19,68 @@ public class Spielfeld
 {
     int width = 1000;
     int length = 1000; 
- 
+    enum AufgabenListe{
+        POI,
+        Hindernisse,
+        Spracherkennung,
+    };
+    
+    Roboter robo = new Roboter();
+
     
     private static Random zufallsgenerator = new Random();    //Random muss ausserhalb von zufallszahl erstellt werden sonst nicht sehr zufällige werte
-   
    
     public Spielfeld()
     {
     
+    }
+    
+    public Spielfeld(Roboter robo)
+    {
+    this.robo = robo;
+    }
+    
+    public void main(){
+    Scanner scanner = new Scanner(System.in);
+    boolean stopWordFound = false;
+    
+    while (stopWordFound == false){
+    System.out.println("\n" + "Welche Aufgabe lösen? : " + "\n"
+    + "- Points-of-interest über einen möglichst kurzen Weg abfahren-" + "\n"
+    + "- Hindernisse umfahren" + "\n"
+    + "- Spracherkennung von Stichwörtern" + "\n"
+    );
+    
+    String Eingabe = scanner.nextLine();
+    
+    if(Eingabe.toLowerCase().contains("ende")){
+        stopWordFound = true;
+    }
+    
+    for(AufgabenListe wort : AufgabenListe.values()){
+                 if(Eingabe.toLowerCase().contains(wort.name().toLowerCase())){
+                     switch (wort){
+                         case POI:
+                            System.out.println("POIs werden abgefahren!");
+                            this.poiSortieren(this.punktEingabe());
+                            break;
+                         case Hindernisse:
+                            System.out.println("Hindernisse werden umfahren!");
+                            this.hindernislisteErzeugen();
+                            break;
+                         case Spracherkennung:
+                            System.out.println("Spracherkennung wird gestartet");
+                            robo.spracherkennung();
+                            break;
+
+                    }
+                    }
+                    
+
+    }
+}
+        
+        
     }
     
     public Punkt[] punktEingabe()
@@ -66,34 +120,30 @@ public class Spielfeld
         public void poiSortieren (Punkt[] poi)
         {
             Punkt roboter = new Punkt(0,0); //Punkt, der Roboter darstellt
-            int n = poi.length;  //6
-            //double Abstaende[] = new double[n-1];//array abstand mit länge von poi erstellen
-            //List Abstaende = new ArrayList();
+            int n = poi.length;  //Laenge der poiListe 
+            
             ArrayList<Double> Abstaende = new ArrayList<Double>();
             for (int j = 1; j < n; j++){
-                Abstaende.clear();     //abstandsarray leeren
-                System.out.println("Runde " + j); 
+                Abstaende.clear();                                                 //abstandsarray leeren
+                //System.out.println("Runde " + j); 
                 for (int i = 1; i < n; i++)                                     //Abstaende ermitteln
                 {
                     poi[i].abstand = roboter.gibAbstand(poi[i].x, poi[i].y);
-                    //System.out.println("Abstand von " + poi[i].x + ", " + poi[i].y + " ist: " + poi[i].abstand);
                     if (poi[i].angefahren == false){
                         Abstaende.add(poi[i].abstand);
-                        //System.out.println("Hinzugefuegt: " + poi[i].x + ", " + poi[i].y);
                     }
                 }
 
-                Collections.sort(Abstaende);
-                                  //AbstandsListe sortieren
-                System.out.println(Abstaende.get(0));
-                for (int i = 1; i < n; i++){                //PunkteArray durchiterieren und zu Punkt mit geringstem Abstand fahren
+                Collections.sort(Abstaende);                                    //AbstandsListe sortieren
                 
-                    if (poi[i].abstand == Abstaende.get(0)){      //zu punkt mit geringstem Abstand fahren
+                for (int i = 1; i < n; i++){                                    //PunkteArray durchiterieren und zu Punkt mit geringstem Abstand fahren
+                
+                    if (poi[i].abstand == Abstaende.get(0)){                    //zu punkt mit geringstem Abstand fahren
                         roboter.x = poi[i].x;
                         roboter.y = poi[i].y;
                         poi[i].angefahren = true;
                         System.out.println("Roboter ist zu " + roboter.x + ", " + roboter.y + " gefahren");
-                        System.out.println("Abstand war: " + poi[i].abstand);
+                        System.out.println("Abstand war: " + poi[i].abstand + "\n");
                     }
                 } 
             
