@@ -31,16 +31,16 @@ public class Roboter
     
     while (stopWordFound == false){
     System.out.println("Stelle eine Frage! ");
-    String Eingabe = scanner.nextLine();
+    String Eingabe = scanner.nextLine();        
     
-    if(Eingabe.toLowerCase().contains("ende")){
+    if(Eingabe.toLowerCase().contains("ende")){   //toLowerCase umwandel in klein dmit gross schreibweise erkannt wird //contain beinhalten
         stopWordFound = true;
-    }
+    }  
     
     for(Stichwort wort : Stichwort.values()){
                  if(Eingabe.toLowerCase().contains(wort.name().toLowerCase())){
-                     switch (wort){
-                         case Name:
+                     switch (wort){ //switch wie if 
+                         case Name: //case sagt variablenwert (bsp. name)
                             System.out.println("Mein Name ist Robohomo 9000");
                             break;
                          case Geschlecht:

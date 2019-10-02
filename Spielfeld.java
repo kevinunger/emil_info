@@ -27,7 +27,7 @@ public class Spielfeld
     
     Roboter robo = new Roboter();
 
-    
+     
     private static Random zufallsgenerator = new Random();    //Random muss ausserhalb von zufallszahl erstellt werden sonst nicht sehr zufällige werte
    
     public Spielfeld()
@@ -62,7 +62,7 @@ public class Spielfeld
                      switch (wort){
                          case POI:
                             System.out.println("POIs werden abgefahren!");
-                            this.poiSortieren(this.punktEingabe());
+                            this.poiSortieren(this.punktEingabe()); //ersteingabe --> return poi -> nimmt poi für sortieren
                             break;
                          case Hindernisse:
                             System.out.println("Hindernisse werden umfahren!");
@@ -120,7 +120,7 @@ public class Spielfeld
         public void poiSortieren (Punkt[] poi)
         {
             Punkt roboter = new Punkt(0,0); //Punkt, der Roboter darstellt
-            int n = poi.length;  //Laenge der poiListe 
+            int n = poi.length;  //Laenge der poi array 
             
             ArrayList<Double> Abstaende = new ArrayList<Double>();
             for (int j = 1; j < n; j++){
@@ -130,7 +130,7 @@ public class Spielfeld
                 {
                     poi[i].abstand = roboter.gibAbstand(poi[i].x, poi[i].y);
                     if (poi[i].angefahren == false){
-                        Abstaende.add(poi[i].abstand);
+                        Abstaende.add(poi[i].abstand);                          // .add hinzufügen ohne zuornung //hintereinander 
                     }
                 }
 
@@ -154,13 +154,13 @@ public class Spielfeld
            Scanner scanner = new Scanner(System.in);
            System.out.println("Anzahl der Hindernisse: ");
            int n = scanner.nextInt(); //Anzahl Hindernisse eintragen
-           ArrayList<Rechteck> Hindernisse = new ArrayList<Rechteck>();
-           int failCounter = 0;
+           ArrayList<Rechteck> Hindernisse = new ArrayList<Rechteck>(); //arraylist liste von objekten, hier Rechtecke
+           int failCounter = 0;         //abbruchbedingung 50
            //System.out.println(zufallszahl(0,10));
            
            for (int i = 1; i < n; i++){
                
-              Punkt rP = new Punkt(zufallszahl(0,1000), zufallszahl(0,1000));
+              Punkt rP = new Punkt(zufallszahl(0,1000), zufallszahl(0,1000)); 
               Rechteck Hindernis = new Rechteck( 
               rP, 
               zufallszahl(1,100), 
@@ -175,16 +175,16 @@ public class Spielfeld
               
               //pruefen, ob Hindernis mit anderem Hindernis ueberlappt
               boolean keineUeberlappung = true;
-              for (int j = 0; j < Hindernisse.size(); j++){
+              for (int j = 0; j < Hindernisse.size(); j++){ //liste aller hindernisse, geht alle durch 
                   
-                  if(Hindernis.ueberlappt(Hindernisse.get(j))){
+                  if(Hindernis.ueberlappt(Hindernisse.get(j))){ //==true
                      keineUeberlappung = false;
                     }
                     
                 }
               
               if (keineUeberlappung == true){ 
-                  Hindernisse.add(Hindernis);
+                  Hindernisse.add(Hindernis); // .add methode der arraylist (hindernis wird hinzugefügt)
                   System.out.println("Keine ueberlappung");
                   System.out.println(" ");
                   failCounter = 0;
@@ -194,62 +194,12 @@ public class Spielfeld
                   System.out.println("Hindernis wurde nicht hinzugefügt, da es mit einem anderen ueberlapt!");
                   failCounter++;
                   if (failCounter == 50){
-                      System.out.println("Es wurde 50 mail hintereinander kein Platz gefunden --> Abbruch! " );
+                      System.out.println("Es wurde 50 mal hintereinander kein Platz gefunden --> Abbruch! " );
                       return;
 
                   }
               }
             }
-
-          /* int hindernis[][] = new int [h][5];
-           Random l = new Random();
-           Random br = new Random();
-           Random xx = new Random();
-           Random yy = new Random();
-           Random red = new Random();
-           Random green = new Random();
-           Random blue = new Random();
-           //System.out.println("test1");
-           for (q = 0; q < h-1; q++)
-           {
-              hindernis [q][0] = xx.nextInt(999) + 1;
-              Color color;
-              xy = hindernis [q][0];
-              hindernis [q][1] = yy.nextInt(999) + 1;
-              yx = hindernis[q][1];
-              if (xy > 900)
-              {
-                  hindernis[q][2] = l.nextInt(999-xy) +1;
-              } 
-              else if (yx > 900)
-              {
-                  hindernis [q][3] = br.nextInt(999-yx) +1;
-              }
-              else
-              {
-                   hindernis [q][2] = l.nextInt(99) + 1;
-                   hindernis [q][3] = br.nextInt(99) + 1;
-              }
-              int r = red.nextInt(255);
-              int g = green.nextInt(255);
-              int b = blue.nextInt(255);
-             // hindernis[q][4] = new Color(r,g,b);
-              
-              //System.out.println("S1");
-            }
-           //System.out.println("test2");
-           for (j = 0; j < h-1; j++) 
-           {
-               System.out.println("länge hindernis " + j+1 + ": " + hindernis[j][0]);
-               System.out.println("breite hindernis " + j+1 + ": " + hindernis[j][1]);
-               System.out.println("x wert hindernis " + j+1 + ": " + hindernis[j][2]);
-               System.out.println("y wert hindernis " + j+1 + ": " + hindernis[j][3]);
-               System.out.println("color")
-               System.out.println("S2");
-            }
-            System.out.println("test3");
-            */
-           
         }
         
         
@@ -257,64 +207,25 @@ public class Spielfeld
         {
             
                 
-            int randZahl = zufallsgenerator.nextInt((bis - von) + 1) + von;
+            int randZahl = zufallsgenerator.nextInt((bis - von) + 1) + von; //(bis-von)+1 für spanne  +von für startwert
             return randZahl;
             
             
             
             
-            /*
-            Random l  = new Random();
-            Random br = new Random();
-            Random xx = new Random();
-            Random yy = new Random();
-            for (q = 0; q < h-1; q++)
-            {
-              x = xx.nextInt(1000);
-             
-              y = yy.nextInt(1000);
-             
-              if (x > 900) 
-              {
-                 laenge = l.nextInt(1000-xy);
-              } 
-              else if (y > 900)
-              {
-                  breite = br.nextInt(1000-yx);
-              }
-              else
-              {
-                   laenge = l.nextInt(100);
-                   breite = br.nextInt(100);
-              }
-        
-            }
-         return breite;
-         */
+            
         }
         
         private Color zufallsfarbe()
         {
-            int randR = zufallsgenerator.nextInt(255) + 1; //plus eins, da nextInt hoechste Zahl nicht beinhaltet
-            int randG = zufallsgenerator.nextInt(255) + 1;
-            int randB = zufallsgenerator.nextInt(255) + 1;
+            int randR = zufallsgenerator.nextInt(256); //plus eins, da nextInt hoechste Zahl nicht beinhaltet
+            int randG = zufallsgenerator.nextInt(256);
+            int randB = zufallsgenerator.nextInt(256);
             Color zufallsfarbe = new Color(randR, randG, randB);
             
             return zufallsfarbe;
                 
-                /*         
-            Color zufallsfarbe;
-            Random red = new Random();
-            Random green = new Random();
-            Random blue = new Random(); 
-            int r = red.nextInt(255);
-            int g = green.nextInt(255);
-            int b = blue.nextInt(255);
             
-            
-            zufallsfarbe = new Color(r,g,b);
-            return zufallsfarbe;
-            */
         }
 }
             

@@ -56,7 +56,7 @@ public class Rechteck
         
         return this.position.x < r.position.x + r.width && this.position.x + this.width > r.position.x &&
         this.position.y < r.position.y + r.height && this.position.y + this.height > r.position.y;
-        
+        //bedinungen für nicht überlappen
     }
     public void setWidth (int width)
     {
