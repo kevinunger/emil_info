@@ -166,7 +166,7 @@ public class Spielfeld
               zufallszahl(1,100), 
               zufallszahl(1,100), 
               ("Rechteck" + Integer.toString(i)),
-              zufallsfarbe()
+              zufallsfarbe()      
               );
               System.out.println("Es wurde erzeugt: ");
               Hindernis.ausgabeAttribute();
@@ -218,7 +218,7 @@ public class Spielfeld
         
         private Color zufallsfarbe()
         {
-            int randR = zufallsgenerator.nextInt(256); //plus eins, da nextInt hoechste Zahl nicht beinhaltet
+            int randR = zufallsgenerator.nextInt(256); 
             int randG = zufallsgenerator.nextInt(256);
             int randB = zufallsgenerator.nextInt(256);
             Color zufallsfarbe = new Color(randR, randG, randB);

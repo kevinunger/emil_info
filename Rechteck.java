@@ -83,8 +83,13 @@ public class Rechteck
     {
        
        if (r>255 || g>255 || b>255)
-       { JOptionPane.showMessageDialog(null, "Wert liegt nicht im Definitionsbereich! Maximal 255", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
+       { JOptionPane.showMessageDialog(null, "Wert liegt nicht im Definitionsbereich! Maximal 255!", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
            
+        }
+        if else (r=255 && g=255 && b=255)
+        {
+            JOptionPane.showMessageDialog(null, "Rechteck ist nicht erkennbar, da es weiß ist!", "Fehlermeldung", JOptionPane.PLAIN_MESSAGE);
+
         }
        else 
        {farbe = new Color(r, g, b);}
